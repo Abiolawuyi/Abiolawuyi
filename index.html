@@ -1,0 +1,442 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Elite Salesforce Service & FSL Consultant Portfolio</title>
+    <!-- Tailwind CSS CDN -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    <!-- Google Fonts - Inter -->
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800;900&display=swap" rel="stylesheet">
+    <style>
+        /* Custom Animations */
+        @keyframes fadeInScaleUp {
+            from {
+                opacity: 0;
+                transform: translateY(20px) scale(0.98);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0) scale(1);
+            }
+        }
+
+        @keyframes bounceIn {
+            0% { opacity: 0; transform: scale(0.3); }
+            50% { opacity: 1; transform: scale(1.05); }
+            70% { transform: scale(0.9); }
+            100% { transform: scale(1); }
+        }
+
+        @keyframes slideInLeft {
+            from {
+                opacity: 0;
+                transform: translateX(-50px);
+            }
+            to {
+                opacity: 1;
+                transform: translateX(0);
+            }
+        }
+
+        body {
+            font-family: 'Inter', sans-serif;
+            background-color: #f0f2f5; /* Soft, light background */
+            color: #334155; /* Slate gray text */
+            line-height: 1.6;
+        }
+
+        .container {
+            max-width: 1200px; /* Slightly wider container */
+        }
+
+        .hero-section {
+            background: linear-gradient(135deg, #0f4c81 0%, #3a7bd5 100%); /* Deep blue to lighter blue */
+            min-height: 550px; /* Taller hero */
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            text-align: center;
+            color: white;
+            padding: 3rem 2rem;
+            border-bottom-left-radius: 60px; /* More pronounced curvature */
+            border-bottom-right-radius: 60px;
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.25); /* Stronger, softer shadow */
+            position: relative;
+            overflow: hidden; /* For subtle background patterns */
+        }
+        .hero-section::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background: url('data:image/svg+xml;utf8,<svg width="100%" height="100%" viewBox="0 0 100 100" xmlns="http://www.w3.org/2000/svg"><defs><pattern id="diagonal-stripe" patternUnits="userSpaceOnUse" width="10" height="10" patternTransform="rotate(45)"><line x1="0" y1="0" x2="0" y2="10" stroke="rgba(255,255,255,0.08)" stroke-width="1"/></pattern></defs><rect x="0" y="0" width="100%" height="100%" fill="url(%23diagonal-stripe)"/></svg>') repeat;
+            opacity: 0.3;
+            pointer-events: none;
+        }
+
+        .hero-content > * {
+            animation: fadeInScaleUp 0.8s ease-out forwards;
+        }
+        .hero-content h1 {
+            animation-delay: 0.2s;
+        }
+        .hero-content p:nth-of-type(1) {
+            animation-delay: 0.4s;
+        }
+        .hero-content p:nth-of-type(2) {
+            animation-delay: 0.6s;
+        }
+        .hero-content .button-primary {
+            animation: bounceIn 0.8s ease-out forwards;
+            animation-delay: 0.8s;
+        }
+
+
+        .section-header {
+            color: #1a202c;
+            border-left: 6px solid #3a7bd5; /* Bright blue accent */
+            padding-left: 1.5rem;
+            margin-bottom: 3.5rem;
+            font-size: 2.5rem; /* Larger, bolder headers */
+            font-weight: 800; /* Extra bold */
+            text-transform: uppercase;
+            letter-spacing: 0.05em;
+            animation: slideInLeft 0.7s ease-out forwards;
+            opacity: 0; /* Hidden initially for animation */
+        }
+        /* Make each section header animate when it comes into view (requires JS, but base CSS for effect) */
+        .section-header.animated {
+             animation: slideInLeft 0.7s ease-out forwards;
+        }
+
+        .card-item {
+            background-color: #ffffff;
+            border-radius: 20px; /* Even more rounded */
+            padding: 2.25rem;
+            box-shadow: 0 8px 25px rgba(0, 0, 0, 0.12); /* Deeper, softer shadow */
+            transition: transform 0.4s cubic-bezier(0.2, 0.8, 0.2, 1), box-shadow 0.4s cubic-bezier(0.2, 0.8, 0.2, 1);
+            overflow: hidden; /* For inner effects */
+            position: relative;
+        }
+        .card-item:hover {
+            transform: translateY(-12px) scale(1.02); /* More dynamic lift and slight scale */
+            box-shadow: 0 15px 40px rgba(0, 0, 0, 0.2); /* Even stronger shadow */
+        }
+        .card-item::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 5px;
+            background: linear-gradient(90deg, #3a7bd5, #0f4c81); /* Gradient top border */
+            transform: scaleX(0);
+            transform-origin: left;
+            transition: transform 0.3s ease-out;
+        }
+        .card-item:hover::before {
+            transform: scaleX(1);
+        }
+
+        .button-primary {
+            background: linear-gradient(45deg, #3a7bd5, #0f4c81); /* Deeper gradient */
+            color: white;
+            padding: 1rem 2.5rem; /* Larger button */
+            border-radius: 12px; /* More rounded button */
+            font-weight: 600;
+            text-transform: uppercase;
+            letter-spacing: 0.05em;
+            transition: all 0.3s ease-in-out;
+            box-shadow: 0 6px 15px rgba(58, 123, 213, 0.4);
+            display: inline-flex; /* For icon alignment */
+            align-items: center;
+            justify-content: center;
+        }
+        .button-primary:hover {
+            transform: translateY(-3px) scale(1.02); /* Pop effect */
+            box-shadow: 0 10px 25px rgba(58, 123, 213, 0.6);
+            opacity: 1; /* Ensure no opacity change on hover */
+        }
+
+        .icon-svg {
+            color: #3a7bd5; /* Consistent blue for icons */
+            width: 32px; /* Larger icons */
+            height: 32px;
+            margin-right: 1rem;
+            flex-shrink: 0; /* Prevent shrinking */
+        }
+        .project-card-image-placeholder {
+            background-color: #e0e7ff; /* Light blue placeholder */
+            border-radius: 12px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            height: 200px; /* Taller placeholder */
+            color: #6366f1; /* Darker blue icon */
+            position: relative;
+            overflow: hidden;
+            border: 1px dashed #a7b5ed;
+        }
+        .project-card-image-placeholder::after {
+            content: "Coming Soon!";
+            position: absolute;
+            bottom: 10px;
+            right: 10px;
+            font-size: 0.9rem;
+            font-weight: 600;
+            color: #3a7bd5;
+            opacity: 0.7;
+        }
+        .project-card-image-placeholder svg {
+            width: 80px; /* Larger icon */
+            height: 80px;
+            opacity: 0.7;
+        }
+    </style>
+</head>
+<body>
+    <!-- Header/Hero Section -->
+    <header class="hero-section">
+        <div class="hero-content max-w-5xl mx-auto z-10">
+            <h1 class="text-6xl sm:text-7xl md:text-8xl font-extrabold mb-6 leading-tight text-shadow-lg">
+                Abi Olawuyi
+            </h1>
+            <p class="text-3xl sm:text-4xl font-light mb-10 opacity-90">
+                Architecting Excellence in Salesforce Service & Field Operations
+            </p>
+            <p class="text-2xl sm:text-2xl font-light leading-relaxed opacity-85 max-w-3xl mx-auto">
+                Transforming complex service challenges into powerful, intuitive Salesforce solutions that drive efficiency,
+                enhance customer experiences, and elevate field service delivery.
+            </p>
+            <a href="#portfolio" class="button-primary mt-12 group">
+                <svg class="w-7 h-7 mr-3 -ml-1 transition-transform duration-300 group-hover:rotate-6" fill="currentColor" viewBox="0 0 20 20" xmlns="http://www.w3.org/2000/svg"><path fill-rule="evenodd" d="M10 18a8 8 0 100-16 8 8 0 000 16zm-7-9a1 1 0 011-1h2a1 1 0 011 1v2a1 1 0 01-1 1H4a1 1 0 01-1-1v-2zm7-7a1 1 0 011-1h2a1 1 0 011 1v2a1 1 0 01-1 1H11a1 1 0 01-1-1V4zm7 9a1 1 0 011-1h2a1 1 0 011 1v2a1 1 0 01-1 1H14a1 1 0 01-1-1v-2z" clip-rule="evenodd"></path></svg>
+                Explore My Vision
+            </a>
+        </div>
+    </header>
+
+    <main class="container mx-auto px-6 py-20">
+        <!-- About Me Section -->
+        <section id="about" class="mb-24">
+            <h2 class="section-header mb-14">About My Approach</h2>
+            <div class="card-item animate-fadeInScaleUp">
+                <p class="text-xl leading-relaxed text-gray-700">
+                    As a dedicated Salesforce Consultant, I specialize in crafting bespoke solutions for Service Cloud and Field Service Lightning (FSL), driven by a commitment to innovation and measurable impact. My comprehensive approach covers the entire project lifecycle: from in-depth requirements gathering and strategic business analysis to meticulous configuration, intricate customization, robust integration via APIs, and seamless deployment. I am passionate about designing powerful process automation using Salesforce Flow, ensuring impeccable data integrity through advanced modeling, and accelerating user adoption with tailored training programs. Every solution I deliver undergoes rigorous testing and quality assurance (UAT), guaranteeing a high-performance, scalable, and future-proof Salesforce ecosystem. My goal is to transform your service delivery into a competitive advantage.
+                </p>
+            </div>
+        </section>
+
+        <!-- Skills & Expertise Section -->
+        <section id="skills" class="mb-24">
+            <h2 class="section-header mb-14">Core Skills & Expertise</h2>
+            <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-12">
+
+                <!-- Skill Category 1: Configuration & Customization -->
+                <div class="card-item animate-fadeInScaleUp">
+                    <h3 class="text-2xl font-semibold text-gray-800 mb-5 flex items-center">
+                        <svg class="icon-svg" fill="currentColor" viewBox="0 0 20 20" xmlns="http://www.w3.org/2000/svg"><path fill-rule="evenodd" d="M11.49 3.17c-.325-.33-.77-.521-1.23-.521-.46 0-.905.19-1.23.521l-2.093 2.093A8.001 8.001 0 005.188 15.58L10 18.25l4.813-2.67A8.001 8.001 0 0012.324 7.266L11.49 3.17zm3.879 9.176l-2.88 2.88A7.989 7.989 0 0015.016 9h-2.185c-.015-1.464-.326-2.825-.8-4.084l2.585-2.585c.325.33.77.521 1.23.521.46 0 .905-.19 1.23-.521l2.093-2.093A8.001 8.001 0 0015.58 5.188L18.25 10l-2.67 4.813A8.001 8.001 0 0011.49 16.83c.325-.33.77-.521 1.23-.521.46 0 .905.19 1.23.521z" clip-rule="evenodd"></path></svg>
+                        Configuration & Customization
+                    </h3>
+                    <ul class="list-disc list-inside text-gray-700 space-y-2 text-lg">
+                        <li>Salesforce Lightning Experience</li>
+                        <li>Sales Cloud & Service Cloud Mastery</li>
+                        <li>Advanced Custom Objects, Fields, Layouts</li>
+                        <li>Dynamic UI/UX Optimization</li>
+                        <li>Profiles, Roles, Permission Sets</li>
+                    </ul>
+                </div>
+
+                <!-- Skill Category 2: FSL Implementation -->
+                <div class="card-item animate-fadeInScaleUp" style="animation-delay: 0.1s;">
+                    <h3 class="text-2xl font-semibold text-gray-800 mb-5 flex items-center">
+                        <svg class="icon-svg" fill="currentColor" viewBox="0 0 20 20" xmlns="http://www.w3.org/2000/svg"><path d="M10 2a6 6 0 00-6 6v3.586l-.707.707A1 1 0 012.707 13H3a1 1 0 011 1v3a1 1 0 011 1h8a1 1 0 011-1v-3a1 1 0 011-1h.293l.707-.707V8a6 6 0 00-6-6zm-1 9V6a1 1 0 00-2 0v5a1 1 0 002 0zm7-2.5V8a6 6 0 00-6-6H4a6 6 0 00-6 6v.5A1.5 1.5 0 003 10v1.586l-.707.707a1 1 0 01-1.414 0L1 12.586V13a1 1 0 001 1v3a1 1 0 001 1h8a1 1 0 001-1v-3a1 1 0 001-1v-.414l.707-.707a1 1 0 011.414 0L17 12.586V13a1 1 0 001 1v3a1 1 0 001 1h1a1 1 0 001-1v-3a1 1 0 001-1h.293l.707-.707V8a6 6 0 00-6-6z"></path></svg>
+                        Field Service Lightning (FSL)
+                    </h3>
+                    <ul class="list-disc list-inside text-gray-700 space-y-2 text-lg">
+                        <li>End-to-End FSL Deployments</li>
+                        <li>Intelligent Scheduling & Optimization</li>
+                        <li>Dynamic Dispatch Console</li>
+                        <li>FSL Mobile App Customization</li>
+                        <li>Service Territories & Inventory Management</li>
+                    </ul>
+                </div>
+
+                <!-- Skill Category 3: Process Automation (Flows, Rules) -->
+                <div class="card-item animate-fadeInScaleUp" style="animation-delay: 0.2s;">
+                    <h3 class="text-2xl font-semibold text-gray-800 mb-5 flex items-center">
+                        <svg class="icon-svg" fill="currentColor" viewBox="0 0 20 20" xmlns="http://www.w3.org/2000/svg"><path fill-rule="evenodd" d="M10 18a8 8 0 100-16 8 8 0 000 16zm-7-9a1 1 0 011-1h2a1 1 0 011 1v2a1 1 0 01-1 1H4a1 1 0 01-1-1v-2zm7-7a1 1 0 011-1h2a1 1 0 011 1v2a1 1 0 01-1 1H11a1 1 0 01-1-1V4zm7 9a1 1 0 011-1h2a1 1 0 011 1v2a1 1 0 01-1 1H14a1 1 0 01-1-1v-2z" clip-rule="evenodd"></path></svg>
+                        Advanced Process Automation
+                    </h3>
+                    <ul class="list-disc list-inside text-gray-700 space-y-2 text-lg">
+                        <li>Complex Salesforce Flow Orchestration</li>
+                        <li>Streamlined Business Process Automation</li>
+                        <li>Approval Processes & Escalations</li>
+                        <li>Automated Communications & Alerts</li>
+                        <li>Efficiency & Productivity Gains</li>
+                    </ul>
+                </div>
+
+                <!-- Skill Category 4: Integration & APIs -->
+                <div class="card-item animate-fadeInScaleUp" style="animation-delay: 0.3s;">
+                    <h3 class="text-2xl font-semibold text-gray-800 mb-5 flex items-center">
+                        <svg class="icon-svg" fill="currentColor" viewBox="0 0 20 20" xmlns="http://www.w3.org/2000/svg"><path fill-rule="evenodd" d="M12.586 4.586a2 2 0 112.828 2.828l-3 3a2 2 0 01-2.828 0 1 1 0 00-1.414 1.414 4 4 0 005.656 0l3-3a4 4 0 00-5.656-5.656l-1.5 1.5a1 1 0 101.414 1.414l1.5-1.5zm-5 5a2 2 0 012.828 0 1 1 0 101.414-1.414 4 4 0 00-5.656 0l-3 3a4 4 0 005.656 5.656l1.5-1.5a1 1 0 10-1.414-1.414l-1.5 1.5a2 2 0 010-2.828z" clip-rule="evenodd"></path></svg>
+                        Integration & APIs
+                    </h3>
+                    <ul class="list-disc list-inside text-gray-700 space-y-2 text-lg">
+                        <li>REST & SOAP API Expertise</li>
+                        <li>Seamless System Interoperability</li>
+                        <li>Data Loader & ETL Tools</li>
+                        <li>Middleware Strategy & Implementation</li>
+                        <li>AppExchange & Third-Party Integrations</li>
+                    </ul>
+                </div>
+
+                <!-- Skill Category 5: Requirements & Business Analysis -->
+                <div class="card-item animate-fadeInScaleUp" style="animation-delay: 0.4s;">
+                    <h3 class="text-2xl font-semibold text-gray-800 mb-5 flex items-center">
+                        <svg class="icon-svg" fill="currentColor" viewBox="0 0 20 20" xmlns="http://www.w3.org/2000/svg"><path d="M9 2a1 1 0 000 2h2a1 1 0 100-2H9z"></path><path fill-rule="evenodd" d="M4 5a2 2 0 012-2 3 3 0 003 3h2a3 3 0 003-3 2 2 0 012 2v11a2 2 0 01-2 2H6a2 2 0 01-2-2V5zm3 4a1 1 0 000 2h.01a1 1 0 100-2H7zm3 0a1 1 0 000 2h.01a1 1 0 100-2H10zm3 0a1 1 0 000 2h.01a1 1 0 100-2H13zm-3 4a1 1 0 100 2h.01a1 1 0 100-2H10z" clip-rule="evenodd"></path></svg>
+                        Requirements & Business Analysis
+                    </h3>
+                    <ul class="list-disc list-inside text-gray-700 space-y-2 text-lg">
+                        <li>In-depth Requirements Elicitation</li>
+                        <li>Strategic Business Process Mapping</li>
+                        <li>Clear User Story & Use Case Definition</li>
+                        <li>Comprehensive Gap Analysis</li>
+                        <li>Solution Design & Blueprinting</li>
+                    </ul>
+                </div>
+
+                <!-- Skill Category 6: Data Modeling & Management -->
+                <div class="card-item animate-fadeInScaleUp" style="animation-delay: 0.5s;">
+                    <h3 class="text-2xl font-semibold text-gray-800 mb-5 flex items-center">
+                        <svg class="icon-svg" fill="currentColor" viewBox="0 0 20 20" xmlns="http://www.w3.org/2000/svg"><path fill-rule="evenodd" d="M3 4a1 1 0 011-1h12a1 1 0 110 2H4a1 1 0 01-1-1zm0 4a1 1 0 011-1h12a1 1 0 110 2H4a1 1 0 01-1-1zm0 4a1 1 0 011-1h12a1 1 0 110 2H4a1 1 0 01-1-1zm0 4a1 1 0 011-1h12a1 1 0 110 2H4a1 1 0 01-1-1z" clip-rule="evenodd"></path></svg>
+                        Salesforce Data Modeling & Management
+                    </h3>
+                    <ul class="list-disc list-inside text-gray-700 space-y-2 text-lg">
+                        <li>Scalable Data Model Design</li>
+                        <li>Efficient Data Migration Strategies</li>
+                        <li>Proactive Data Cleansing & Deduplication</li>
+                        <li>Robust Data Governance Implementation</li>
+                        <li>Metadata & Master Data Management</li>
+                    </ul>
+                </div>
+
+                <!-- Skill Category 7: User Adoption & Training -->
+                <div class="card-item animate-fadeInScaleUp" style="animation-delay: 0.6s;">
+                    <h3 class="text-2xl font-semibold text-gray-800 mb-5 flex items-center">
+                        <svg class="icon-svg" fill="currentColor" viewBox="0 0 20 20" xmlns="http://www.w3.org/2000/svg"><path fill-rule="evenodd" d="M10 9a3 3 0 100-6 3 3 0 000 6zm-7 9a7 7 0 1114 0H3z" clip-rule="evenodd"></path></svg>
+                        User Adoption & Empowerment
+                    </h3>
+                    <ul class="list-disc list-inside text-gray-700 space-y-2 text-lg">
+                        <li>Customized Training Programs & Workshops</li>
+                        <li>Intuitive User Documentation & Guides</li>
+                        <li>Proactive Change Management</li>
+                        <li>Post-Implementation Support Excellence</li>
+                        <li>Strategies for High User Engagement</li>
+                    </ul>
+                </div>
+
+                <!-- Skill Category 8: Reporting & Dashboards -->
+                <div class="card-item animate-fadeInScaleUp" style="animation-delay: 0.7s;">
+                    <h3 class="text-2xl font-semibold text-gray-800 mb-5 flex items-center">
+                        <svg class="icon-svg" fill="currentColor" viewBox="0 0 20 20" xmlns="http://www.w3.org/2000/svg"><path d="M10 12a2 2 0 100-4 2 2 0 000 4z"></path><path fill-rule="evenodd" d="M.458 10C1.732 5.943 5.522 3 10 3s8.268 2.943 9.542 7c-1.274 4.057-5.064 7-9.542 7S1.732 14.057.458 10zM14 10a4 4 0 11-8 0 4 4 0 018 0z" clip-rule="evenodd"></path></svg>
+                        Actionable Reporting & Dashboards
+                    </h3>
+                    <ul class="list-disc list-inside text-gray-700 space-y-2 text-lg">
+                        <li>Advanced Custom & Standard Reports</li>
+                        <li>Interactive Dynamic Dashboards</li>
+                        <li>Strategic KPI Tracking & Visualization</li>
+                        <li>Compelling Data Storytelling</li>
+                        <li>Business Intelligence Support</li>
+                    </ul>
+                </div>
+
+                <!-- Skill Category 9: Testing & Quality Assurance (UAT) & Deployment -->
+                <div class="card-item animate-fadeInScaleUp" style="animation-delay: 0.8s;">
+                    <h3 class="text-2xl font-semibold text-gray-800 mb-5 flex items-center">
+                        <svg class="icon-svg" fill="currentColor" viewBox="0 0 20 20" xmlns="http://www.w3.org/2000/svg"><path fill-rule="evenodd" d="M6 2a2 2 0 00-2 2v12a2 2 0 002 2h8a2 2 0 002-2V7.414A2 2 0 0015.414 6L12 2.586A2 2 0 0010.586 2H6zm5 6a1 1 0 10-2 0v5a1 1 0 102 0V8z" clip-rule="evenodd"></path></svg>
+                        Rigorous Testing & Deployment
+                    </h3>
+                    <ul class="list-disc list-inside text-gray-700 space-y-2 text-lg">
+                        <li>Comprehensive User Acceptance Testing (UAT)</li>
+                        <li>Robust Unit & Regression Testing</li>
+                        <li>Strategic Sandbox Management</li>
+                        <li>Efficient Deployment Strategies (Change Sets, DevOps)</li>
+                        <li>Post-Deployment Verification & Hypercare</li>
+                    </ul>
+                </div>
+
+            </div>
+        </section>
+
+        <!-- Portfolio Projects Section -->
+        <section id="portfolio" class="mb-24">
+            <h2 class="section-header mb-14">My Impactful Portfolio Projects</h2>
+            <p class="text-xl leading-relaxed text-gray-700 mb-12 card-item animate-fadeInScaleUp" style="animation-delay: 0.9s;">
+                This section is dedicated to showcasing how I translate complex requirements into real-world, high-impact Salesforce solutions. Each future project will be presented as a detailed case study, highlighting my specific contributions, the innovative solutions implemented in Service Cloud and Field Service Lightning, and the quantifiable results achieved.
+                <br><br>
+                Anticipate these key project highlights, demonstrating my ability to win in any challenge:
+            </p>
+
+            <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-12">
+                <!-- Project Placeholder 1: AI-Enhanced Service Cloud Automation -->
+                <div class="project-card card-item text-center group animate-fadeInScaleUp" style="animation-delay: 1.0s;">
+                    <h3 class="text-2xl font-semibold text-gray-800 mb-3">AI-Enhanced Service Automation <br><span class="text-base font-normal text-indigo-500">(Coming Soon!)</span></h3>
+                    <p class="text-gray-600 mb-5 text-lg">Designed and implemented intelligent Flow automation with Einstein capabilities to predict case resolution times and automate routing, drastically improving service efficiency and customer satisfaction.</p>
+                    <div class="project-card-image-placeholder">
+                        <svg class="w-16 h-16 transition-transform group-hover:scale-110" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5" d="M9.75 17L19.5 20l-1.5-6.75M9.75 17v3.375C9.75 19.582 10.428 20 11.25 20h2.5c.822 0 1.5-.418 1.5-1.125V4.125c0-.822-.418-1.5-1.125-1.5H7.5c-.822 0-1.5.418-1.5 1.125v15.375c0 .822.418 1.5 1.125 1.5h.375"></path></svg>
+                    </div>
+                    <button class="button-primary mt-6 text-sm">Case Study</button>
+                </div>
+
+                <!-- Project Placeholder 2: Multi-Org FSL Consolidation -->
+                <div class="project-card card-item text-center group animate-fadeInScaleUp" style="animation-delay: 1.1s;">
+                    <h3 class="text-2xl font-semibold text-gray-800 mb-3">Multi-Org FSL Consolidation <br><span class="text-base font-normal text-indigo-500">(Coming Soon!)</span></h3>
+                    <p class="text-gray-600 mb-5 text-lg">Led the consolidation of multiple legacy field service systems into a unified Salesforce FSL platform, optimizing resource allocation across diverse service territories and enhancing mobile workforce productivity.</p>
+                    <div class="project-card-image-placeholder">
+                        <svg class="w-16 h-16 transition-transform group-hover:scale-110" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5" d="M10.325 4.317c.426-1.756 2.924-1.756 3.35 0a1.724 1.724 0 002.573 1.066c1.543-.94 3.31.826 2.37 2.37a1.724 1.724 0 001.065 2.572c1.756.426 1.756 2.924 0 3.35a1.724 1.724 0 00-1.066 2.573c.94 1.543-.826 3.31-2.37 2.37a1.724 1.724 0 00-2.572 1.065c-.426 1.756-2.924 1.756-3.35 0a1.724 1.724 0 00-2.573-1.066c-1.543.94-3.31-.826-2.37-2.37a1.724 1.724 0 00-1.065-2.572c-1.756-.426-1.756-2.924 0-3.35a1.724 1.724 0 001.066-2.573c-.94-1.543.826-3.31 2.37-2.37z"></path><path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5" d="M15 12a3 3 0 11-6 0 3 3 0 016 0z"></path></svg>
+                    </div>
+                    <button class="button-primary mt-6 text-sm">Case Study</button>
+                </div>
+
+                <!-- Project Placeholder 3: Seamless Customer Portal Integration -->
+                <div class="project-card card-item text-center group animate-fadeInScaleUp" style="animation-delay: 1.2s;">
+                    <h3 class="text-2xl font-semibold text-gray-800 mb-3">Customer Portal Transformation <br><span class="text-base font-normal text-indigo-500">(Coming Soon!)</span></h3>
+                    <p class="text-gray-600 mb-5 text-lg">Developed and deployed a robust Salesforce Community (Experience Cloud) portal, enabling self-service case creation, knowledge access, and appointment scheduling, drastically improving customer experience.</p>
+                    <div class="project-card-image-placeholder">
+                        <svg class="w-16 h-16 transition-transform group-hover:scale-110" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5" d="M3 10h18M3 14h18m-9-4v8m-7 0h14a2 2 0 002-2V8a2 2 0 00-2-2H5a2 2 0 00-2 2v8a2 2 0 002 2z"></path></svg>
+                    </div>
+                    <button class="button-primary mt-6 text-sm">Case Study</button>
+                </div>
+            </div>
+        </section>
+
+        <!-- Call to Action / Contact Section -->
+        <section id="contact" class="mb-16">
+            <h2 class="section-header mb-14">Let's Connect & Innovate</h2>
+            <div class="card-item text-center animate-fadeInScaleUp" style="animation-delay: 1.3s;">
+                <p class="text-xl mb-8 text-gray-700 leading-relaxed">
+                    Ready to elevate your Salesforce Service Cloud or Field Service Lightning capabilities?
+                    I'm eager to discuss your next challenge and demonstrate how my expertise can deliver exceptional results for your organization.
+                </p>
+                <a href="mailto:your.email@example.com" class="button-primary text-xl no-underline group">
+                    <svg class="inline-block w-7 h-7 mr-3 -mt-1 transition-transform group-hover:rotate-6" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M3 8l7.89 5.26a2 2 0 002.22 0L21 8M5 19h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v10a2 2 0 002 2z"></path></svg>
+                    Ignite a Conversation
+                </a>
+                <p class="text-lg mt-8 text-gray-600">
+                    Find me on <a href="[Your LinkedIn Profile URL]" target="_blank" class="text-blue-600 hover:underline font-medium transition-colors duration-200">LinkedIn</a> for professional networking.
+                </p>
+            </div>
+        </section>
+    </main>
+
+    <!-- Footer -->
+    <footer class="bg-gray-900 text-white text-center p-10 mt-20 rounded-t-xl shadow-inner">
+        <p class="text-lg">&copy; 2024 Abi Olawuyi. All rights reserved. Architecting the future of service with Salesforce.</p>
+        <p class="text-sm text-gray-500 mt-2">Crafted with precision and a passion for winning.</p>
+    </footer>
+</body>
+</html>
